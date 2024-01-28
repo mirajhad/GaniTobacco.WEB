@@ -2,7 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="h-screen">
+    <div className="h-40">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. A ipsam quam
       veritatis! Nemo, fugit quas. Dolorem eligendi recusandae porro ipsa
       tenetur asperiores facilis quidem ad ipsum consequuntur. Culpa illum ullam
