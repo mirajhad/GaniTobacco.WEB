@@ -2,6 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
+import {useSelector,useDispatch} from 'react-redux';
 // Creating schema
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -12,14 +13,15 @@ const schema = Yup.object().shape({
     .min(8, "Password must be at least 8 characters"),
 });
 const Login = () => {
+  const user = useSelector(state=>state.users);
   return (
-    <div>
+    <>
       <Formik
         validationSchema={schema}
         initialValues={{ email: "", password: "" }}
         onSubmit={(values) => {
-          // Alert the input values of the form that we filled
-          alert(JSON.stringify(values));
+          const existUser = user.find(x=> x.email===values.email && x.password === values.password);
+          console.log(existUser)
         }}
       >
         {({
@@ -73,7 +75,7 @@ const Login = () => {
           </div>
         )}
       </Formik>
-    </div>
+    </>
   );
 };
 

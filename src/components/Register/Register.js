@@ -1,9 +1,14 @@
-import React from "react";
+import React,{useState} from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./Register.css";
+import {useDispatch} from "react-redux";
+import { register } from "../../store/authSlice";
 
 const schema = Yup.object().shape({
+  username: Yup.string()
+    .required("username is a required field")
+    .min(5,"Invalid username format"),
   email: Yup.string()
     .required("Email is a required field")
     .email("Invalid email format"),
@@ -13,14 +18,20 @@ const schema = Yup.object().shape({
 });
 
 const Register = () => {
+
+   const [formData, setFormData] = useState();
+  const dispatch = useDispatch();
+
   return (
     <>
       <Formik
         validationSchema={schema}
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ username:"",email: "", password: "" }}
         onSubmit={(values) => {
-          // Alert the input values of the form that we filled
-          alert(JSON.stringify(values));
+          
+          dispatch(register(values));
+          setFormData('');
+          alert("You have successfully registered")
         }}
       >
         {({
@@ -38,14 +49,18 @@ const Register = () => {
                 <span>Register</span>
                 <input
                   type="text"
-                  name="text"
+                  name="username"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.email}
+                  value={values.username}
                   placeholder="Enter username"
                   className="form-control inp_text"
-                  id="email"
+                  id="username"
                 />
+                <p className="error">
+                {errors.username && touched.username && errors.username}
+                </p>
+                
                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <input
                   type="email"
@@ -62,15 +77,6 @@ const Register = () => {
                   {errors.email && touched.email && errors.email}
                 </p>
                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
-                <input
-                  type="password"
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  placeholder="Enter password"
-                  className="form-control"
-                />
                 <input
                   type="password"
                   name="password"
