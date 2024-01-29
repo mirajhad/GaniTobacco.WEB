@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./Login.css";
-import {useSelector,useDispatch} from 'react-redux';
+import { login } from "../../services/AuthService";
 // Creating schema
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -10,19 +10,35 @@ const schema = Yup.object().shape({
     .email("Invalid email format"),
   password: Yup.string()
     .required("Password is a required field")
-    .min(8, "Password must be at least 8 characters"),
+    .min(6, "Password must be at least 8 characters"),
 });
 const Login = () => {
-  const user = useSelector(state=>state.users);
+  
+
+  async function loginUser({ email, password }) {
+    try {
+      const response = await login(email, password);
+      if (response.success) {
+        const {data}=response;
+        localStorage.setItem("accessToken",data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+
+        console.log("User logged in successfully");
+      } else {
+        console.error("Login failed:", response.message);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
+  }
+
+  // const user = useSelector(state=>state.users);
   return (
     <>
       <Formik
         validationSchema={schema}
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values) => {
-          const existUser = user.find(x=> x.email===values.email && x.password === values.password);
-          console.log(existUser)
-        }}
+        onSubmit={(values) => loginUser(values)}
       >
         {({
           values,
@@ -34,10 +50,8 @@ const Login = () => {
         }) => (
           <div className="login">
             <div className="form">
-              {/* Passing handleSubmit parameter tohtml form onSubmit property */}
               <form noValidate onSubmit={handleSubmit}>
                 <span>Login</span>
-                {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <input
                   type="email"
                   name="email"
@@ -48,11 +62,9 @@ const Login = () => {
                   className="form-control inp_text"
                   id="email"
                 />
-                {/* If validation is not passed show errors */}
                 <p className="error">
                   {errors.email && touched.email && errors.email}
                 </p>
-                {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <input
                   type="password"
                   name="password"
@@ -62,14 +74,10 @@ const Login = () => {
                   placeholder="Enter password"
                   className="form-control"
                 />
-                {/* If validation is not passed show errors */}
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
-               
-                {/* Click on submit button to submit the form */}
                 <button type="submit">Login</button>
-              
               </form>
             </div>
           </div>
