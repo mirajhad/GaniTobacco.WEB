@@ -19,7 +19,7 @@ const schema = Yup.object().shape({
 
 const Register = () => {
 
-   const [formData, setFormData] = useState();
+  
   const dispatch = useDispatch();
 
   return (
@@ -30,7 +30,7 @@ const Register = () => {
         onSubmit={(values) => {
           
           dispatch(register(values));
-          setFormData('');
+          
           alert("You have successfully registered")
         }}
       >
