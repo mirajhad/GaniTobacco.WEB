@@ -7,7 +7,8 @@ export const AppSettings = {
   Urls: {
     Auth: {
       loginUrl: ApiEndpoint + 'login',
-      forgotPassword: ApiEndpoint + 'forgotpassword'
+      forgotPassword: ApiEndpoint + 'forgotpassword',
+      RegisterUser: ApiEndpoint+'register'
     },
     Common: {
       // getMenu: ApiEndpoint + 'getMenu',

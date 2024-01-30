@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 import { login } from "../../services/AuthService";
 // Creating schema
@@ -13,17 +14,19 @@ const schema = Yup.object().shape({
     .min(6, "Password must be at least 8 characters"),
 });
 const Login = () => {
-  
+  const navigate  = useNavigate()
 
   async function loginUser({ email, password }) {
     try {
       const response = await login(email, password);
       if (response.success) {
+        
         const {data}=response;
         localStorage.setItem("accessToken",data.accessToken);
         localStorage.setItem("refreshToken", data.refreshToken);
 
         console.log("User logged in successfully");
+        navigate('/dashboard');
       } else {
         console.error("Login failed:", response.message);
       }

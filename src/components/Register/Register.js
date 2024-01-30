@@ -1,14 +1,15 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./Register.css";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { register } from "../../store/authSlice";
-
+import { RegisterUser } from "../../services/RegisterService";
+import Model from "../Model/Model";
 const schema = Yup.object().shape({
   username: Yup.string()
     .required("username is a required field")
-    .min(5,"Invalid username format"),
+    .min(5, "Invalid username format"),
   email: Yup.string()
     .required("Email is a required field")
     .email("Invalid email format"),
@@ -18,21 +19,38 @@ const schema = Yup.object().shape({
 });
 
 const Register = () => {
+  const [successBtn, setSuccessBtn] = useState(false);
+  async function Signup({ username, email, password }) {
+    try {
+      // dispatch(register(values));
+      const response = await RegisterUser(username, email, password);
+      if (response.success) {
+        setSuccessBtn(true)
+        setTimeout(() => {
+          setSuccessBtn(false);
+        }, 5000);
+      }
+    } catch (error) {}
+  }
 
-  
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <>
+      {successBtn ? (
+        <div
+          class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+          role="alert"
+        >
+          <span class="font-medium">Successfully Regsiter!</span> Now you can
+          login
+        </div>
+      ) : null}
+
       <Formik
         validationSchema={schema}
-        initialValues={{ username:"",email: "", password: "" }}
-        onSubmit={(values) => {
-          
-          dispatch(register(values));
-          
-          alert("You have successfully registered")
-        }}
+        initialValues={{ username: "", email: "", password: "" }}
+        onSubmit={(values) => Signup(values)}
       >
         {({
           values,
@@ -58,9 +76,9 @@ const Register = () => {
                   id="username"
                 />
                 <p className="error">
-                {errors.username && touched.username && errors.username}
+                  {errors.username && touched.username && errors.username}
                 </p>
-                
+
                 {/* Our input html with passing formik parameters like handleChange, values, handleBlur to input properties */}
                 <input
                   type="email"

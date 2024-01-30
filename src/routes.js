@@ -5,6 +5,7 @@ import About from "./components/About/About";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Contact from "./components/Contact/Contact";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 const routes = createBrowserRouter([
     {
@@ -31,8 +32,14 @@ const routes = createBrowserRouter([
                 path:"contact",
                 element:<Contact/>
                 
-            }
+            },
+           
         ]
+    },
+    {
+        path:"dashboard",
+        element:<Dashboard/>,
+        
     }
 ])
 export default routes;
