@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
 import "./Login.css";
 import { login } from "../../services/AuthService";
+import Spinner from "../Spinner/Spinner";
 // Creating schema
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -15,9 +16,11 @@ const schema = Yup.object().shape({
 });
 const Login = () => {
   const navigate  = useNavigate()
+  const [loading, setLoading] = useState(false);
 
   async function loginUser({ email, password }) {
     try {
+      setLoading(true);
       const response = await login(email, password);
       if (response.success) {
         
@@ -32,6 +35,8 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Login failed:", error);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -80,7 +85,14 @@ const Login = () => {
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
-                <button type="submit">Login</button>
+                
+                
+                <button type="submit" disabled={loading}>
+                  {loading ? (
+                    <Spinner/>
+                  ) : 'Login'}
+                </button>
+               
               </form>
             </div>
           </div>

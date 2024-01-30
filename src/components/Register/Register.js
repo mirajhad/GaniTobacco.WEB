@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./Register.css";
+import Spinner from "../Spinner/Spinner";
 // import { useDispatch } from "react-redux";
 // import { register } from "../../store/authSlice";
 import { RegisterUser } from "../../services/RegisterService";
@@ -19,10 +20,12 @@ const schema = Yup.object().shape({
 });
 
 const Register = () => {
+  const [loading, setLoading] = useState(false);
   const [successBtn, setSuccessBtn] = useState(false);
   async function Signup({ username, email, password }) {
     try {
       // dispatch(register(values));
+      setLoading(true);
       const response = await RegisterUser(username, email, password);
       if (response.success) {
         setSuccessBtn(true)
@@ -30,7 +33,11 @@ const Register = () => {
           setSuccessBtn(false);
         }, 5000);
       }
-    } catch (error) {}
+    } catch (error) {
+
+    }finally {
+      setLoading(false);
+    }
   }
 
   // const dispatch = useDispatch();
@@ -109,7 +116,12 @@ const Register = () => {
                   {errors.password && touched.password && errors.password}
                 </p>
                 {/* Click on submit button to submit the form */}
-                <button type="submit">Sign Up</button>
+               
+                <button type="submit" disabled={loading}>
+                  {loading ? (
+                    <Spinner/>
+                  ) : 'Sign Up'}
+                </button>
               </form>
             </div>
           </div>
