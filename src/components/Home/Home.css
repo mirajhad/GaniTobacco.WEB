@@ -4,6 +4,7 @@
     margin: auto;
     padding: 20px;
     text-align: center;
+    height: 82vh;
   }
   
   header {
@@ -61,5 +62,15 @@
   
   button:hover {
     background-color: #0056b3;
+  }
+
+  @media screen and(max-width:600) {
+    .home {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+      height: 74vh;
+    }
   }
   
