@@ -64,7 +64,7 @@ const Register = () => {
             <div className="form">
               {/* Passing handleSubmit parameter tohtml form onSubmit property */}
               <form noValidate onSubmit={handleSubmit}>
-                <span>Register</span>
+                <span>Sign Up</span>
                 <input
                   type="text"
                   name="username"
@@ -109,7 +109,7 @@ const Register = () => {
                   {errors.password && touched.password && errors.password}
                 </p>
                 {/* Click on submit button to submit the form */}
-                <button type="submit">Login</button>
+                <button type="submit">Sign Up</button>
               </form>
             </div>
           </div>
