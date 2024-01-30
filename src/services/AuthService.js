@@ -1,6 +1,7 @@
+import { AppSettings } from "../constants";
 export const login = async (email, password) => {
     try {
-        const apiUrl = "http://localhost:8000/api/v1/users/login";
+        const apiUrl = AppSettings.Urls.Auth.loginUrl;
         const myHeaders = new Headers({
             "Content-Type": "application/json",
         });
