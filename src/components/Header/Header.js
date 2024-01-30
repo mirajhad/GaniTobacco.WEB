@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import ThemeBtn from "../ThemeBtn/ThemeBtn";
+
 const Header = () => {
   return (
     <>
@@ -30,6 +31,12 @@ const Header = () => {
                 className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-primary-800"
               >
                 Register
+              </Link>
+              <Link
+                to="/order"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                Order Now
               </Link>
              <ThemeBtn/>
             </div>

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import "./Register.css";
-import { useDispatch } from "react-redux";
-import { register } from "../../store/authSlice";
+// import { useDispatch } from "react-redux";
+// import { register } from "../../store/authSlice";
 import { RegisterUser } from "../../services/RegisterService";
-import Model from "../Model/Model";
+
 const schema = Yup.object().shape({
   username: Yup.string()
     .required("username is a required field")

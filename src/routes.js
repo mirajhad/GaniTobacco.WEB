@@ -6,6 +6,7 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Contact from "./components/Contact/Contact";
 import Dashboard from "./components/Dashboard/Dashboard";
+import Order from "./components/Order/Order";
 
 const routes = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const routes = createBrowserRouter([
                 element:<Contact/>
                 
             },
+            {
+                path:"order",
+                element:<Order/>
+            }
            
         ]
     },
