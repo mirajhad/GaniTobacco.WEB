@@ -1,0 +1,11 @@
+.order{
+    @media screen and (max-width: 600px) {
+        .login {
+          width: 360px;
+          padding: 8% 0 0;
+          margin: auto;
+          font-family: 'Comfortaa', cursive;
+          height: 74vh;
+        }
+      }
+}
