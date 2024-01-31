@@ -1,15 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../Header/Header";
 
 const Dashboard = () => {
   return (
     <>
-      <Header />
-      {/* Moved up the parent div */}
-      <div className="flex h-screen bg-gray-100">
+     
+      <div className="flex flex-col md:flex-row h-screen bg-gray-100">
         {/* Sidebar */}
-        <div className="w-64 bg-gray-800 text-white p-4">
+        <div className="w-full md:w-64 bg-gray-800 text-white p-4">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <ul className="mt-4">
             <li className="mb-2">
@@ -31,11 +29,11 @@ const Dashboard = () => {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-8">
+        <div className="flex-1 p-8 overflow-x-auto">
           <h2 className="text-2xl font-bold mb-4">Welcome to the Dashboard</h2>
           <div className="bg-white p-4 rounded shadow">
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="px-6 py-3">

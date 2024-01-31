@@ -37,14 +37,13 @@ const routes = createBrowserRouter([
             {
                 path:"order",
                 element:<Order/>
-            }
-           
+            },
+            {
+                path:"dashboard",
+                element:<Dashboard/>,               
+            }           
         ]
     },
-    {
-        path:"dashboard",
-        element:<Dashboard/>,
-        
-    }
+    
 ])
 export default routes;
