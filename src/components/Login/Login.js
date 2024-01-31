@@ -2,8 +2,10 @@ import React,{useState} from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
+import {useDispatch} from "react-redux"
 import "./Login.css";
 import { login } from "../../services/AuthService";
+import {login as authLogin} from '../../store/authSlice'
 import Spinner from "../Spinner/Spinner";
 // Creating schema
 const schema = Yup.object().shape({
@@ -15,7 +17,8 @@ const schema = Yup.object().shape({
     .min(6, "Password must be at least 8 characters"),
 });
 const Login = () => {
-  const navigate  = useNavigate()
+  const navigate  = useNavigate();
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
   async function loginUser({ email, password }) {
@@ -24,9 +27,7 @@ const Login = () => {
       const response = await login(email, password);
       if (response.success) {
         
-        const {data}=response;
-        localStorage.setItem("accessToken",data.accessToken);
-        localStorage.setItem("refreshToken", data.refreshToken);
+       dispatch(authLogin(response.data));
 
         console.log("User logged in successfully");
         navigate('/dashboard');

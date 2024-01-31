@@ -1,6 +1,19 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 const Order = () => {
+
+  const {register, handleSubmit} = useForm();
+  const [error, setError] = useState("");
+
+  const allProduct = async(data)=>{
+    setError("")
+    try {
+      
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
   return (
     <>
       <section className="bg-white dark:bg-gray-900">
