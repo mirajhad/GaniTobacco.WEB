@@ -46,10 +46,10 @@ const Register = () => {
     <>
       {successBtn ? (
         <div
-          class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
+          className="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400"
           role="alert"
         >
-          <span class="font-medium">Successfully Regsiter!</span> Now you can
+          <span className="font-medium">Successfully Regsiter!</span> Now you can
           login
         </div>
       ) : null}

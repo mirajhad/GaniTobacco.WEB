@@ -18,7 +18,7 @@ const ThemeBtn = () => {
   return (
     <div>
       <label className="relative inline-flex items-center cursor-pointer">
-        <input type="checkbox" value="" class="sr-only peer"
+        <input type="checkbox" value="" className="sr-only peer"
         onChange={onChangeBtn}
         checked={themeMode==="dark"}
         />
