@@ -1,18 +1,31 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Input from "../Input/Input";
+import { Order as AddOrder } from "../../services/OrderService";
+import "./Order.css";
 const Order = () => {
-
-  const {register, handleSubmit} = useForm();
+  const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
 
-  const allProduct = async(data)=>{
-    setError("")
+  const addProduct = async (data) => {
+    const values = {
+      name: data.name,
+      email: data.email,
+      address: data.address,
+      phone: data.phone,
+      quantity: data.quantity,
+      price: data.quantity,
+    };
+    let response = await AddOrder(values);
+    console.log(response);
+    setError("");
+    console.log(data);
+    // const data = await Order()
     try {
-      
     } catch (error) {
-      setError(error.message)
+      setError(error.message);
     }
-  }
+  };
 
   return (
     <>
@@ -21,110 +34,75 @@ const Order = () => {
           <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Order Now
           </h2>
-          <form action="#">
+          <form onSubmit={handleSubmit((values) => addProduct(values))}>
             <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
-              <div className="sm:col-span-2">
-                <label
-                  for="name"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Product Name
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
+              <div className="w-full">
+                <Input
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Type product name"
-                  required=""
+                  label="Name: "
+                  placeholder="Enter your name"
+                  type="text"
+                  {...register("name", {
+                    required: true,
+                  })}
                 />
               </div>
               <div className="w-full">
-                <label
-                  for="brand"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Brand
-                </label>
-                <input
-                  type="text"
-                  name="brand"
-                  id="brand"
+                <Input
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Product brand"
-                  required=""
-                />
-              </div>
-              <div className="w-full">
-                <label
-                  for="price"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Price
-                </label>
-                <input
-                  type="number"
-                  name="price"
-                  id="price"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="$2999"
-                  required=""
-                />
-              </div>
-              <div>
-                <label
-                  for="category"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Category
-                </label>
-                <select
-                  id="category"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                >
-                  <option selected="">Select category</option>
-                  <option value="TV">TV/Monitors</option>
-                  <option value="PC">PC</option>
-                  <option value="GA">Gaming/Console</option>
-                  <option value="PH">Phones</option>
-                </select>
-              </div>
-              <div>
-                <label
-                  for="item-weight"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Item Weight (kg)
-                </label>
-                <input
-                  type="number"
-                  name="item-weight"
-                  id="item-weight"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="12"
-                  required=""
+                  label="Email: "
+                  placeholder="Enter your email"
+                  type="email"
+                  {...register("email", {
+                    required: true,
+                    validate: {
+                      matchPatern: (value) =>
+                        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+                          value
+                        ) || "Email address must be a valid address",
+                    },
+                  })}
                 />
               </div>
               <div className="sm:col-span-2">
-                <label
-                  for="description"
-                  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >
-                  Description
-                </label>
-                <textarea
-                  id="description"
-                  rows="8"
-                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Your description here"
-                ></textarea>
+                <Input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  label="Address: "
+                  placeholder="Enter your address"
+                  type="text"
+                  {...register("address", {
+                    required: true,
+                  })}
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  label="Phone: "
+                  placeholder="Enter your number"
+                  type="number"
+                  {...register("phone", {
+                    required: true,
+                  })}
+                />
+              </div>
+              <div className="w-full">
+                <Input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  label="Quantity: "
+                  placeholder="Enter quantity in grams"
+                  type="number"
+                  {...register("quantity", {
+                    required: true,
+                  })}
+                />
               </div>
             </div>
             <button
               type="submit"
-              className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 text-gray-900 dark:text-white"
+              className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center bg-primary-700 rounded-lg ring-4  ring-primary-200 text-gray-900 dark:text-white"
             >
-              Add product
+              Order Now
             </button>
           </form>
         </div>

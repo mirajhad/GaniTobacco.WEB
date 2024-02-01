@@ -1,11 +1,11 @@
 @media screen and (max-width: 600px) {
-        .order {
-          height: 74vh;
-        }
-      }
+  section {
+    height: 74vh;
+  }
+}
 
-      @media screen and (min-width: 600px) {
-        .order {
-          height: 84vh;
-        }
-      }
+@media screen and (min-width: 600px) {
+  section {
+    height: 84vh;
+  }
+}
