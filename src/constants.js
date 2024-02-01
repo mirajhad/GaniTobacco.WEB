@@ -13,7 +13,7 @@ export const AppSettings = {
     },
     Product: {
       addProduct: ApiEndpoint + "products/addProduct",
-      getProduct: ApiEndpoint + "product",
+      getProduct: ApiEndpoint + "products/getProducts",
       updateProduct: ApiEndpoint + "product/",
       deleteProduct: ApiEndpoint + "product/",
     },

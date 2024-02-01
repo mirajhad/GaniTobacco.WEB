@@ -1,31 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import { Order as AddOrder } from "../../services/OrderService";
+import Spinner from "../Spinner/Spinner";
 import "./Order.css";
 const Order = () => {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
-  // const [error, setError] = useState("");
 
   const addProduct = async (data) => {
-    const values = {
-      name: data.name,
-      email: data.email,
-      address: data.address,
-      phone: data.phone,
-      quantity: data.quantity,
-      price: data.quantity,
-    };
-    let response = await AddOrder(values);
-    console.log(response);
-    // setError("");
-    console.log(data);
-    if (response.statusCode === 200) {
-      alert("Order Placed Successfully");
-    }
     try {
+      setLoading(true);
+      const values = {
+        name: data.name,
+        email: data.email,
+        address: data.address,
+        phone: data.phone,
+        quantity: data.quantity,
+        price: data.quantity,
+      };
+      let response = await AddOrder(values);
+      console.log(response);
+
+      console.log(data);
+      if (response.statusCode === 200) {
+        alert("Order Placed Successfully");
+      }
     } catch (error) {
-      // setError(error.message);
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -102,9 +106,10 @@ const Order = () => {
             </div>
             <button
               type="submit"
+              disabled={loading}
               className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center bg-primary-700 rounded-lg ring-4  ring-primary-200 text-gray-900 dark:text-white"
             >
-              Order Now
+              {loading ? <Spinner /> : "Order Now"}
             </button>
           </form>
         </div>

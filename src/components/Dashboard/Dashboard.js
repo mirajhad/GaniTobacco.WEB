@@ -1,11 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { getOrders } from "../../services/OrderService";
+import { useState, useEffect } from "react";
 
 const Dashboard = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    getOrders().then((res) => {
+      setProducts(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
   return (
     <>
       <div className="flex flex-col md:flex-row h-screen bg-gray-100">
-        {/* Sidebar */}
         <div className="w-full md:w-64 bg-gray-800 text-white p-4">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <ul className="mt-4">
@@ -60,22 +70,28 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <td className="px-6 py-4">Silver</td>
-                    <td className="px-6 py-4">Silver</td>
-                    <td className="px-6 py-4">Laptop</td>
-                    <td className="px-6 py-4">$2999</td>
-                    <td className="px-6 py-4">$2999</td>
-                    <td className="px-6 py-4">$2999</td>
-                    <td className="px-6 py-4 text-right">
-                      <Link
-                        href="#"
-                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                      >
-                        Edit
-                      </Link>
-                    </td>
-                  </tr>
+                  {/* Map through products and generate table rows */}
+                  {products.map((product) => (
+                    <tr
+                      key={product._id}
+                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-6 py-4">{product.name}</td>
+                      <td className="px-6 py-4">{product.email}</td>
+                      <td className="px-6 py-4">{product.address}</td>
+                      <td className="px-6 py-4">{product.phone}</td>
+                      <td className="px-6 py-4">{product.quantity}</td>
+                      <td className="px-6 py-4">{product.price}</td>
+                      <td className="px-6 py-4 text-right">
+                        <Link
+                          to={`#`}
+                          className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                        >
+                          Edit
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

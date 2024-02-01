@@ -1,13 +1,6 @@
 import { AppSettings } from "../constants";
 
-export const Order = async ({
-  name,
-  email,
-  address,
-  phone,
-  quantity,
-  price,
-}) => {
+const Order = async ({ name, email, address, phone, quantity, price }) => {
   try {
     const apiUrl = AppSettings.Urls.Product.addProduct;
     const myHeaders = new Headers({
@@ -39,3 +32,27 @@ export const Order = async ({
     throw error;
   }
 };
+
+const getOrders = async () => {
+  const apiUrl = AppSettings.Urls.Product.getProduct;
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  try {
+    const response = await fetch(apiUrl, requestOptions);
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status} - ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error("Error fetching orders:", error.message);
+    throw error; // You can choose to handle the error here or let it propagate to the caller
+  }
+};
+
+export { Order, getOrders };
