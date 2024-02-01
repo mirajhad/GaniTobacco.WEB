@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import Input from "../Input/Input";
 import { Order as AddOrder } from "../../services/OrderService";
 import "./Order.css";
 const Order = () => {
   const { register, handleSubmit } = useForm();
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const addProduct = async (data) => {
     const values = {
@@ -18,12 +18,14 @@ const Order = () => {
     };
     let response = await AddOrder(values);
     console.log(response);
-    setError("");
+    // setError("");
     console.log(data);
-    // const data = await Order()
+    if (response.statusCode === 200) {
+      alert("Order Placed Successfully");
+    }
     try {
     } catch (error) {
-      setError(error.message);
+      // setError(error.message);
     }
   };
 

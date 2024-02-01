@@ -8,7 +8,6 @@ export const Order = async ({
   quantity,
   price,
 }) => {
-  debugger;
   try {
     const apiUrl = AppSettings.Urls.Product.addProduct;
     const myHeaders = new Headers({
