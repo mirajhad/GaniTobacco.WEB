@@ -25,7 +25,6 @@ const Register = () => {
   const [failBtn, setFailBtn] = useState(false);
   async function Signup({ username, email, password }) {
     try {
-      // dispatch(register(values));
       setLoading(true);
       const response = await RegisterUser(username, email, password);
       if (response.success) {
@@ -44,8 +43,6 @@ const Register = () => {
       setFailBtn(false);
     }
   }
-
-  // const dispatch = useDispatch();
 
   return (
     <>

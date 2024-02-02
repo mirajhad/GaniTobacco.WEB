@@ -6,7 +6,7 @@ import Spinner from "../Spinner/Spinner";
 import "./Order.css";
 const Order = () => {
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const addProduct = async (data) => {
     try {
@@ -30,6 +30,7 @@ const Order = () => {
       console.log(error);
     } finally {
       setLoading(false);
+      reset();
     }
   };
 
