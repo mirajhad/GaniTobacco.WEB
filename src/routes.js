@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import Home from "./components/Home/Home";
+import {Home} from "./pages";
 import About from "./components/About/About";
-import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
+import {Login} from "./pages";
+import {Register} from "./pages";
 import Contact from "./components/Contact/Contact";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Order from "./components/Order/Order";
-
+import {Dashboard} from "./pages";
+import {Order} from "./pages";
+import AuthLayout from "./components/AuthLayout/AuthLayout";
 const routes = createBrowserRouter([
     {
         path:"/",
@@ -40,7 +40,14 @@ const routes = createBrowserRouter([
             },
             {
                 path:"dashboard",
-                element:<Dashboard/>,               
+                element:
+                (
+                    <AuthLayout authentication>
+                         <Dashboard/>,       
+                    </AuthLayout>
+                )
+                                    
+                       
             }           
         ]
     },
