@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import img1 from "../../assets/img3.jpg";
+import img2 from "../../assets/OIP.jpeg";
 const Home = () => {
   return (
   <>
@@ -11,12 +13,12 @@ const Home = () => {
       </div>
       <div className="features flex space-x-4 mb-8">
         <div className="feature flex-1 p-4 border rounded-lg bg-white shadow-md">
-          <h2 className="text-lg font-semibold mb-2">Modern Design</h2>
-          <p>Clean and intuitive user interfaces</p>
+          {/* <h2 className="text-lg font-semibold mb-2">Modern Design</h2> */}
+          <img src={img1} alt="" className="w-full"/>
         </div>
         <div className="feature flex-1 p-4 border rounded-lg bg-white shadow-md">
-          <h2 className="text-lg font-semibold mb-2">Responsive Layout</h2>
-          <p>Works seamlessly on all devices</p>
+          {/* <h2 className="text-lg font-semibold mb-2">Responsive Layout</h2> */}
+          <img src={img2} alt="" className="w-full"/>
         </div>
         
       </div>

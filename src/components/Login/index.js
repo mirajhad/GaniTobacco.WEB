@@ -1,12 +1,14 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
 import "./Login.css";
 import { login } from "../../services/AuthService";
 import {login as authLogin} from '../../store/authSlice'
 import Spinner from "../Spinner/Spinner";
+
+
 // Creating schema
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -17,8 +19,14 @@ const schema = Yup.object().shape({
     .min(5, "Password must be at least 5 characters"),
 });
 const Login = () => {
+  const navigate = useNavigate();
+  
+  const authStatus = useSelector((state) => state.auth.status);
+  console.log("login==",authStatus);
+    if(authStatus){
+      navigate('/dashboard');
+    }
   const [failBtn, setFailBtn] = useState(false);
-  const navigate  = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
@@ -50,6 +58,9 @@ const Login = () => {
       
     }
   }
+  useEffect(()=>{
+    
+  },[])
 
   // const user = useSelector(state=>state.users);
   return (
