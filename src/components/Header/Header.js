@@ -27,6 +27,12 @@ const Header = () => {
       slug: "/order",
       active: !authStatus,
     },
+    {
+      name: "Rate",
+      slug: "/rate",
+      active: !authStatus,
+    },
+
   ];
   return (
     <>

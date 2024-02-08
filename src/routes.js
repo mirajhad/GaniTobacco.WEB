@@ -7,6 +7,7 @@ import {Register} from "./pages";
 import Contact from "./components/Contact/Contact";
 import {Dashboard} from "./pages";
 import {Order} from "./pages";
+import {Rate} from "./pages"
 import AuthLayout from "./components/AuthLayout/AuthLayout";
 const routes = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
             {
                 path:"order",
                 element:<Order/>
+            },
+            {
+                path:"rate",
+                element:<Rate/>
             },
             {
                 path:"dashboard",
