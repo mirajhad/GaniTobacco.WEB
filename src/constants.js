@@ -1,5 +1,6 @@
 //Prod
 const ApiEndpoint = "https://netflix-backend-seven.vercel.app/api/v1/";
+// https://netflix-backend-seven.vercel.app/api/v1/rate/getAllRates
 
 // Dev
 // const ApiEndpoint = "http://localhost:8000/api/v1/";
@@ -17,5 +18,9 @@ export const AppSettings = {
       updateProduct: ApiEndpoint + "product/",
       deleteProduct: ApiEndpoint + "product/",
     },
+    Rate:{
+      getAllRates:ApiEndpoint +"rate/getAllRates",
+      addRate:ApiEndpoint+"rate/addRate"
+    }
   },
 };

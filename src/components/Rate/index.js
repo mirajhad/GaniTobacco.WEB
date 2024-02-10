@@ -1,6 +1,7 @@
 import React from "react";
 import "./rate.css";
 import { useForm } from "react-hook-form";
+import { Rate as RateService } from "../../services/RateService";
 const Rate = () => {
   const {
     register,
@@ -8,6 +9,17 @@ const Rate = () => {
   } = useForm();
 
   const addProduct = async (data) => {
+    try {
+      let response = await RateService(data)
+      if(response.statusCode===201){
+        alert("Category added successfully")
+      }else{
+        alert("something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+      debugger;
+    }
     console.log(data)
   };
 
@@ -63,5 +75,4 @@ const Rate = () => {
     </>
   );
 };
-
 export default Rate;
