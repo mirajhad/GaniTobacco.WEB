@@ -5,5 +5,6 @@ import Order from '../components/Order';
 import Dashboard from '../components/Dashboard';
 import Rate from '../components/Rate';
 import Container from "../components/Container"
+import ReusableForm from "./ReusableForm"
 
-export {Home, Login, Register, Order, Dashboard,Rate,Container}
+export {Home, Login, Register, Order, Dashboard,Rate,Container,ReusableForm}
