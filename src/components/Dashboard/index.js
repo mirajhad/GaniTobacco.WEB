@@ -2,6 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { getOrders } from "../../services/OrderService";
 import { useState, useEffect } from "react";
+import { LinkContainer } from "react-router-bootstrap";
+import { Nav } from "react-bootstrap";
+import {
+  FaCartShopping,
+  FaCircleUser,
+  FaPowerOff,
+  FaTable,
+  FaUserGroup,
+  FaUsers,
+} from "react-icons/fa6";
 
 const Dashboard = () => {
   const [products, setProducts] = useState([]);
@@ -20,20 +30,83 @@ const Dashboard = () => {
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <ul className="mt-4">
             <li className="mb-2">
-              <Link to="#" className="hover:text-gray-300">
-                Home
-              </Link>
+              <LinkContainer to="/admin/product-list" className="mb-2">
+                <Nav.Link>
+                  <strong className="flex items-center">
+                    <FaTable
+                      style={{ marginRight: "10px", marginBottom: "3px" }}
+                      size={16}
+                    />
+                    Products
+                  </strong>
+                </Nav.Link>
+              </LinkContainer>
             </li>
             <li className="mb-2">
-              <Link to="#" className="hover:text-gray-300">
-                Analytics
-              </Link>
+              <LinkContainer to="/admin/order-list" className="mb-2">
+                <Nav.Link>
+                  <strong className="flex items-center">
+                    <FaCartShopping
+                      style={{ marginRight: "10px", marginBottom: "3px" }}
+                      size={16}
+                    />
+                    Orders
+                  </strong>
+                </Nav.Link>
+              </LinkContainer>
             </li>
             <li className="mb-2">
-              <Link to="#" className="hover:text-gray-300">
-                Settings
-              </Link>
+              <LinkContainer to="/admin/user-list" className="mb-2">
+                <Nav.Link>
+                  <strong className="flex items-center">
+                    <FaUsers
+                      style={{ marginRight: "10px", marginBottom: "3px" }}
+                      size={16}
+                    />
+                    Users
+                  </strong>
+                </Nav.Link>
+              </LinkContainer>
             </li>
+            <li className="mb-2">
+              <LinkContainer to="/admin/admin-list" className="mb-2">
+                <Nav.Link>
+                  <strong className="flex items-center">
+                    <FaUserGroup
+                      style={{ marginRight: "10px", marginBottom: "3px" }}
+                      size={16}
+                    />
+                    Admins
+                  </strong>
+                </Nav.Link>
+              </LinkContainer>
+            </li>
+            <li className="mb-2">
+              <LinkContainer to="/admin/profile" className="mb-2">
+                <Nav.Link>
+                  <strong className="flex items-center">
+                    <FaCircleUser
+                      style={{ marginRight: "10px", marginBottom: "3px" }}
+                      size={16}
+                    />
+                    Profile
+                  </strong>
+                </Nav.Link>
+              </LinkContainer>
+            </li>
+            <li className="mb-2">
+              <Nav.Link>
+                <strong className="flex items-center">
+                  <FaPowerOff
+                    style={{ marginRight: "10px", marginBottom: "3px" }}
+                    size={16}
+                  />
+                  Logout
+                </strong>
+              </Nav.Link>
+            </li>
+            <li className="mb-2"></li>
+            <li className="mb-2"></li>
           </ul>
         </div>
 
