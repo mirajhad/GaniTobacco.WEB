@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { getOrders } from "../../services/OrderService";
 import { useState, useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
@@ -13,7 +12,7 @@ import {
   FaUsers,
 } from "react-icons/fa6";
 
-const Dashboard = () => {
+const Dashboard = ({children}) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -25,7 +24,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row h-screen bg-gray-100">
+     <div className="flex flex-col md:flex-row h-screen bg-gray-100">
         <div className="w-full md:w-64 bg-gray-800 text-white p-4">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <ul className="mt-4">
@@ -105,11 +104,13 @@ const Dashboard = () => {
                 </strong>
               </Nav.Link>
             </li>
-            <li className="mb-2"></li>
-            <li className="mb-2"></li>
           </ul>
         </div>
+
+        {/* Main Content */}
+       {children}
       </div>
+      
     </>
   );
 };
