@@ -1,11 +1,7 @@
 import React from 'react'
 import {Dashboard as DashboardComponent, DashboardSummary} from "../../components";
-import {ReusableForm} from "../../components";
 const Dashboard = () => {
-  const handleSubmit = (formData) => {
-    // Handle form submission logic here
-    console.log(formData);
-  };
+  
 
   // const options = {
   //   interests: {

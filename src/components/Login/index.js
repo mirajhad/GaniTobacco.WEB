@@ -1,8 +1,8 @@
-import React,{useEffect, useState} from "react";
+import React,{ useState} from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 import "./Login.css";
 import { login } from "../../services/AuthService";
 import {login as authLogin} from '../../store/authSlice'
@@ -20,12 +20,6 @@ const schema = Yup.object().shape({
 });
 const Login = () => {
   const navigate = useNavigate();
-  
-  const authStatus = useSelector((state) => state.auth.status);
-  console.log("login==",authStatus);
-    if(authStatus){
-      navigate('/dashboard');
-    }
   const [failBtn, setFailBtn] = useState(false);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
@@ -35,34 +29,25 @@ const Login = () => {
       setLoading(true);
       const response = await login(email, password);
       if (response.success) {
-        
-       dispatch(authLogin(response.data));
-
+        dispatch(authLogin(response.data));
+        localStorage.setItem("user", response.data.user.username);
         console.log("User logged in successfully");
         navigate('/dashboard');
       } else {
-       
-          
-      
-        
+        // Handle unsuccessful login
       }
     } catch (error) {
-      setTimeout(()=>{
+      setTimeout(() => {
         setFailBtn(true);
-      },5000)
+      }, 5000);
       console.log(error);
-      
     } finally {
       setLoading(false);
       setFailBtn(false);
-      
     }
   }
-  useEffect(()=>{
-    
-  },[])
 
-  // const user = useSelector(state=>state.users);
+  
   return (
     <>
       <Formik
