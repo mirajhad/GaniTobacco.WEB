@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { DashboardSummary } from "./components";
-import { Home } from "./pages";
+import { Home, Item } from "./pages";
 import { Login } from "./pages";
 import { Register } from "./pages";
 import { Dashboard } from "./pages";
@@ -45,8 +45,8 @@ const routes = createBrowserRouter([
         ),
         children:[
           {
-            path:"user",
-            element:<Dashboard/>
+            path:"item",
+            element:<Item/>
           }
         ]
       },

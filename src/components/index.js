@@ -7,5 +7,6 @@ import Rate from '../components/Rate';
 import Container from "../components/Container";
 import ReusableForm from "./ReusableForm";
 import DashboardSummary from './Admin/DashboardSummary';
+import Item from './Admin/Item';
 
-export {Home, Login, Register, Order, Dashboard,Rate,Container,ReusableForm, DashboardSummary}
+export {Home, Login, Register, Order, Dashboard,Rate,Container,ReusableForm, DashboardSummary, Item}

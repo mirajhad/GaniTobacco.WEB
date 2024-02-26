@@ -5,10 +5,7 @@ const Dashboard = () => {
   return (
     
     <>
-    <DashboardComponent >
     <DashboardSummary/>
-   
-    </DashboardComponent>
      </>
    
   );

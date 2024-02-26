@@ -9,24 +9,24 @@ import {
   FaUserGroup,
   FaUsers,
 } from "react-icons/fa6";
+import {Outlet} from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div>
        <>
      <div className="flex flex-col md:flex-row h-screen bg-gray-100">
         <div className="w-full md:w-64 bg-gray-800 text-white p-4">
           <h1 className="text-2xl font-bold">Dashboard</h1>
           <ul className="mt-4">
             <li className="mb-2">
-              <LinkContainer to="/admin/product-list" className="mb-2">
+              <LinkContainer to="/dashboard/item" className="mb-2">
                 <Nav.Link>
                   <strong className="flex items-center">
                     <FaTable
                       style={{ marginRight: "10px", marginBottom: "3px" }}
                       size={16}
                     />
-                    Products
+                    Item
                   </strong>
                 </Nav.Link>
               </LinkContainer>
@@ -96,10 +96,12 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>    
+        <div className="flex-1 p-4">
+          <Outlet />
+        </div>
       </div>
       
     </>
-    </div>
   )
 }
 
