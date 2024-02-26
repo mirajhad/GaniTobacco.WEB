@@ -1,4 +1,4 @@
-# Gani Tobacco Platform Project - MERN Stack
+# Gani Tobacco Project - MERN Stack
 
 Welcome to the eCommerce Platform Project built using the MERN (MongoDB, Express.js, React, Node.js) Stack. This project provides a robust and full-featured online shopping platform with various functionalities to enhance the user experience.
 
@@ -35,7 +35,7 @@ git clone https://github.com/your-username/reactwebdev.git
 ```
 
 ```bash
-cd MERN-eCommerce
+cd reactwebdev
 ```
 
 3. Create a MongoDB database and obtain your MongoDB URI from [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
@@ -73,10 +73,10 @@ npm install
 
 ### Run
 
-To run both the frontend and backend concurrently, use:
+To run the frontend, use:
 
 ```bash
-npm run dev
+npm run start
 ```
 
 
@@ -119,7 +119,7 @@ We welcome and appreciate contributions from the community to enhance and improv
 3. Navigate to the project directory:
 
    ```bash
-   cd MERN-eCommerce
+   cd reactwebdev
    ```
 
 4. Create a new branch for your contributions:
