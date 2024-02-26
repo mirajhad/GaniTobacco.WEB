@@ -4,11 +4,10 @@ import { DashboardSummary } from "./components";
 import { Home, Item } from "./pages";
 import { Login } from "./pages";
 import { Register } from "./pages";
-import { Dashboard } from "./pages";
 import { Order } from "./pages";
 import { Rate } from "./pages";
 import AuthLayout from "./components/AuthLayout/AuthLayout";
-import Sidebar from "./components/Admin/Sidebar";
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -47,6 +46,10 @@ const routes = createBrowserRouter([
           {
             path:"item",
             element:<Item/>
+          },
+          {
+            path:"ItemList",
+
           }
         ]
       },

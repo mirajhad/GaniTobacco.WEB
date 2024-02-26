@@ -32,14 +32,14 @@ const DashboardSummary = () => {
               </LinkContainer>
             </li>
             <li className="mb-2">
-              <LinkContainer to="/admin/order-list" className="mb-2">
+              <LinkContainer to="/dashboard/itemList" className="mb-2">
                 <Nav.Link>
                   <strong className="flex items-center">
                     <FaCartShopping
                       style={{ marginRight: "10px", marginBottom: "3px" }}
                       size={16}
                     />
-                    Orders
+                    Item List
                   </strong>
                 </Nav.Link>
               </LinkContainer>
@@ -96,7 +96,7 @@ const DashboardSummary = () => {
             </li>
           </ul>
         </div>
-        <div className="flex-1 p-4">
+        <div className="flex-1 p-4 overflow-y-auto">
           <Outlet />
         </div>
       </div>

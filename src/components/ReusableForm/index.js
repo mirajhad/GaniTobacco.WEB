@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ReusableForm = ({ initialValues, onSubmit, options }) => {
+const ReusableForm = ({ initialValues, onSubmit, options,submitText }) => {
   const [values, setValues] = useState(initialValues || {});
 
   const handleChange = (event) => {
@@ -56,7 +56,7 @@ const ReusableForm = ({ initialValues, onSubmit, options }) => {
           )}
         </div>
       ))}
-      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Submit</button>
+      <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">{submitText}</button>
     </form>
   );
 };
