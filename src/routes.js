@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
+import { DashboardSummary } from "./components";
 import { Home } from "./pages";
 import { Login } from "./pages";
 import { Register } from "./pages";
@@ -7,6 +8,7 @@ import { Dashboard } from "./pages";
 import { Order } from "./pages";
 import { Rate } from "./pages";
 import AuthLayout from "./components/AuthLayout/AuthLayout";
+import Sidebar from "./components/Admin/Sidebar";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -38,9 +40,15 @@ const routes = createBrowserRouter([
         path: "dashboard",
         element: (
           <AuthLayout authentication>
-            <Dashboard />,
+            <DashboardSummary />,
           </AuthLayout>
         ),
+        children:[
+          {
+            path:"user",
+            element:<Dashboard/>
+          }
+        ]
       },
     ],
   },

@@ -1,13 +1,12 @@
 import React from 'react'
-import DashboardCard from '../Dashboard'
-import { Row, Col, Card } from 'react-bootstrap';
-import { FaStore, FaUsers, FaShoppingBag, FaWallet } from 'react-icons/fa';
-import Meta from "../Meta"
+import Sidebar from './Sidebar';
+import {Outlet} from "react-router-dom";
 const DashboardSummary = () => {
   return (
-    <div>
-      
-    </div>
+    <>
+      <Sidebar />
+      <Outlet />
+    </>
   )
 }
 

@@ -12,11 +12,13 @@ export default function AuthLayout({children, authentication = true}) {
     useEffect(() => {
        
 
-        if(authentication && authStatus !== authentication){
-            navigate("/login")
-        } else if(!authentication && authStatus !== authentication){
-            navigate("/dashboard")
+        if(authStatus === false || authentication) {
+            navigate('/login')
         }
+        if(authStatus === true || !authentication) {
+            navigate('/dashboard')
+        }
+        console.log(authStatus)
         setLoader(false)
     }, [authStatus, navigate, authentication])
 
