@@ -1,15 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import menu from "../../assets/svg/menu.svg";
+import cross from "../../assets/svg/cross.svg";
 import ThemeBtn from "../ThemeBtn/ThemeBtn";
 import LogoutBtn from "../LogoutBtn/LogoutBtn";
+import {toggleMenu} from "../../store/headerSlice";
 
 const Header = () => {
   const authStatus = useSelector((state) => state.auth.status);
-  console.log(authStatus);
+  const menuState = useSelector((state) => state.header.showMenu);
+  const dispatch = useDispatch()
+
   const navigate = useNavigate();
+
+  const triggerMenu = () => {
+    dispatch(toggleMenu())
+  }
 
   const navItems = [
     {
@@ -66,6 +75,11 @@ const Header = () => {
                 </li>
               )}
               <ThemeBtn />
+              {authStatus && (
+                  <div className='flex ml-3'>
+                    <img src={!menuState ? menu : cross} alt="menu-icon" onClick={triggerMenu}/>
+                  </div>
+              )}
             </ul>
           </div>
         </nav>
