@@ -1,19 +1,20 @@
-import React,{ useState} from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from 'react-router-dom';
-import {useDispatch} from "react-redux"
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { GoogleLogin } from "@react-oauth/google";
+
 import "./Login.css";
 import { login } from "../../services/AuthService";
-import {login as authLogin} from '../../store/authSlice'
+import { login as authLogin } from "../../store/authSlice";
 import Spinner from "../Spinner/Spinner";
-
 
 // Creating schema
 const schema = Yup.object().shape({
   email: Yup.string()
     .required("Email or Username is a required field")
-    .min(3,"Enter altest 3 characters"),
+    .min(3, "Enter altest 3 characters"),
   password: Yup.string()
     .required("Password is a required field")
     .min(5, "Password must be at least 5 characters"),
@@ -32,7 +33,7 @@ const Login = () => {
         dispatch(authLogin(response.data));
         localStorage.setItem("user", response.data.user.username);
         console.log("User logged in successfully");
-        navigate('/dashboard');
+        navigate("/dashboard");
       } else {
         // Handle unsuccessful login
       }
@@ -47,7 +48,10 @@ const Login = () => {
     }
   }
 
-  
+  const googleLogin = () => {
+    console.log("hii");
+  };
+
   return (
     <>
       <Formik
@@ -92,8 +96,7 @@ const Login = () => {
                 <p className="error">
                   {errors.password && touched.password && errors.password}
                 </p>
-                {
-                failBtn ? (
+                {failBtn ? (
                   <div
                     className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
                     role="alert"
@@ -111,18 +114,19 @@ const Login = () => {
                       </svg>
                     </span>
                   </div>
-                ):null
-               }
-                
+                ) : null}
                 <button type="submit" disabled={loading}>
-                  {loading ? (
-                    <Spinner/>
-                  ) : 'Login'}
+                  {loading ? <Spinner /> : "Login"}
                 </button>
-              
-                
-                
-               
+                <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    console.log(credentialResponse);
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
+                ;
               </form>
             </div>
           </div>
